@@ -12,8 +12,8 @@ namespace Data
 {
     public class Repository<T> where T : DomainObject
     {
-        private string _connectionString;
-        private string _tableName;
+        private readonly string _connectionString;
+        private readonly string _tableName;
         public Repository(string connectionString)
         {
             _connectionString = connectionString;
