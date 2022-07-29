@@ -28,9 +28,10 @@ namespace Data
                 var adapter = new SqlDataAdapter(sql, connection);
                 var ds = new DataSet();
                 adapter.Fill(ds);
+
                 return MapDataTableToList(ds.Tables[0]);
             }
-            
+
         }
         public bool Update(T item)
         {
@@ -41,7 +42,7 @@ namespace Data
             return false;
         }
 
-        private List<T> MapDataTableToList(DataTable dt)
+        private IEnumerable<T> MapDataTableToList(DataTable dt)
         {
             var columnNames = dt.Columns.Cast<DataColumn>()
                 .Select(c => c.ColumnName)
@@ -59,7 +60,7 @@ namespace Data
                     }
                 }
                 return objT;
-            }).ToList();
+            }).AsEnumerable();
         }
     }
 }
