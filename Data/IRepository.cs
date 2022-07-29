@@ -9,6 +9,6 @@ namespace Data
     public interface IRepository<T>
     {
         IEnumerable<T> GetAll();
-        bool Update(T item);
+        void Update(T item);
     }
 }

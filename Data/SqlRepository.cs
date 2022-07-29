@@ -33,15 +33,10 @@ namespace Data
             }
 
         }
-        public bool Update(T item)
+        //Не сделан т.к переключился на хранимые процедуры
+        public void Update(T item)
         {
-            string sql = $"SELECT * FROM {_tableName}";
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                var adapter = new SqlDataAdapter(sql, connection);
-            }
-            return false;
+            throw new NotImplementedException();
         }
 
         private IEnumerable<T> MapDataTableToList(DataTable dt)

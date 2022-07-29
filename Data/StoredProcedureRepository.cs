@@ -36,7 +36,7 @@ namespace Data
             }
         }
 
-        public bool Update(T item)
+        public void Update(T item)
         {
             string procedure = $"Update{_tableName}";
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -53,10 +53,8 @@ namespace Data
                         Value = property.GetValue(item)
                     });
                 }
-                command.ExecuteNonQuery();
-                return true;
+                command.ExecuteScalar();
             }
-
         }
 
         private IEnumerable<T> MapDataTableToList(DataTable dt)
