@@ -10,7 +10,8 @@ using GMap.NET.WindowsForms;
 
 namespace Controllers
 {
-    internal class MarkersSelector
+    //Получение оверлея из координат модели
+    internal class OverlayMarkersSelector
     {
         internal GMarkerGoogle GetMarker(Coordinate coordinate, GMarkerGoogleType gMarkerGoogleType = GMarkerGoogleType.red)
         {

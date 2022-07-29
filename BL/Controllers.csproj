@@ -78,7 +78,7 @@
   <ItemGroup>
     <Compile Include="Services\OverlayService.cs" />
     <Compile Include="MainController.cs" />
-    <Compile Include="Services\MarkersSelector.cs" />
+    <Compile Include="Services\OverlayMarkersSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CoordinateService.cs" />
   </ItemGroup>

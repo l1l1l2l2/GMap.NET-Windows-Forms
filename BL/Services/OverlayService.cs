@@ -10,15 +10,15 @@ namespace Controllers.Services
 {
     internal class OverlayService
     {
-        private readonly MarkersSelector _markersSelector;
+        private readonly OverlayMarkersSelector _markersSelector;
         private readonly UnitOfWork _unitOfWork;
         public OverlayService()
         {
-            _markersSelector = new MarkersSelector();
+            _markersSelector = new OverlayMarkersSelector();
             _unitOfWork = new UnitOfWork();
         }
         //TODO: DI
-        public OverlayService(MarkersSelector markersSelector, UnitOfWork unitOfWork)
+        public OverlayService(OverlayMarkersSelector markersSelector, UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _markersSelector = markersSelector;
