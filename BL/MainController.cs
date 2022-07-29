@@ -32,14 +32,13 @@ namespace Controllers
         /// <param name="latitude"></param>
         /// <param name="longitude"></param>
         /// <param name="isDeleted"></param>
-        public void OnUpdate(int idCoordinate, double latitude, double longitude, bool isDeleted = false)
+        public void OnUpdate(int idCoordinate, double latitude, double longitude)
         {
             _coordinateService.UpdateCoordinate(new Coordinate
             {
                 Id = idCoordinate,
                 Latitude = latitude,
                 Longitude = longitude,
-                IsDeleted = isDeleted
             });
         }
     }
