@@ -20,13 +20,13 @@ namespace Data
         }
         public IEnumerable<T> GetAll()
         {
-            string procedure = "GetCoordinates";
+            string procedure = $"Get{_tableName}";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(procedure, connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandType = CommandType.StoredProcedure;
 
                 var adapter = new SqlDataAdapter(command);
                 var ds = new DataSet();
@@ -38,7 +38,25 @@ namespace Data
 
         public bool Update(T item)
         {
-            throw new NotImplementedException();
+            string procedure = $"Update{_tableName}";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(procedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                foreach (var property in typeof(T).GetProperties())
+                {
+                    command.Parameters.Add(new SqlParameter
+                    {
+                        ParameterName = $"@{property.Name}",
+                        Value = property.GetValue(item)
+                    });
+                }
+                command.ExecuteNonQuery();
+                return true;
+            }
+
         }
 
         private IEnumerable<T> MapDataTableToList(DataTable dt)
