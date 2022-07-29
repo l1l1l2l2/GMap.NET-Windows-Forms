@@ -18,14 +18,15 @@ namespace Controllers
             mapMarker.ToolTip = new GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip(mapMarker);
             mapMarker.ToolTipText = coordinate.Id.ToString();
             mapMarker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+            mapMarker.Tag = coordinate.Id;
             return mapMarker;
         }
         internal GMapOverlay GetOverlayMarkers(IEnumerable<Coordinate> coordinates, string name, GMarkerGoogleType gMarkerGoogleType = GMarkerGoogleType.red)
         {
             GMapOverlay gMapMarkers = new GMapOverlay(name);
-            foreach (Coordinate us in coordinates)
+            foreach (Coordinate coordinate in coordinates)
             {
-                gMapMarkers.Markers.Add(GetMarker(us, gMarkerGoogleType));
+                gMapMarkers.Markers.Add(GetMarker(coordinate, gMarkerGoogleType));
             }
             return gMapMarkers;
         }

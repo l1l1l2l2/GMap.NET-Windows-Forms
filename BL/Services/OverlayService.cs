@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Data;
 using GMap.NET.WindowsForms;
 
-namespace Controllers
+namespace Controllers.Services
 {
     internal class OverlayService
     {
@@ -17,7 +17,7 @@ namespace Controllers
             _markersSelector = new MarkersSelector();
             _unitOfWork = new UnitOfWork();
         }
-        //Для будущего DI
+        //TODO: DI
         public OverlayService(MarkersSelector markersSelector, UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

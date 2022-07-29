@@ -1,4 +1,6 @@
-﻿using GMap.NET.WindowsForms;
+﻿using Controllers.Services;
+using GMap.NET.WindowsForms;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +11,32 @@ namespace Controllers
 {
     public class MainController
     {
-        private readonly OverlayService _service;
+        private readonly OverlayService _overlayService;
+        private readonly CoordinateService _coordinateService;
         public GMapOverlay Overlay
         {
-            get => _service.GetGMapOverlay();
+            get => _overlayService.GetGMapOverlay();
             set { }
         }
+        //TODO: DI
         public MainController()
         {
-            _service = new OverlayService();
+            _overlayService = new OverlayService();
+            _coordinateService = new CoordinateService();
         }
-        //Для будущего DI
+        public void OnUpdate(int idCoordinate, double latitude, double longitude, bool isDeleted = false)
+        {
+
+            _coordinateService.UpdateCoordinate(new Coordinate
+            {
+                Id = idCoordinate,
+                Latitude = latitude,
+                Longitude = longitude,
+                IsDeleted = isDeleted
+            });
+        }
+
+        //TODO: DI
         //public MainController(OverlayService service)
         //{
         //    _service = service;

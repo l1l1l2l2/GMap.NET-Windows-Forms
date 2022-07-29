@@ -81,6 +81,10 @@ namespace View
             _state.IsMouseDown = false;
             if (_state.DraggingMarker != null)
             {
+                Controller.OnUpdate(
+                    Convert.ToInt32(_state.DraggingMarker.Tag), 
+                    _state.DraggingMarker.Position.Lat,
+                    _state.DraggingMarker.Position.Lng);
                 gMapControl.DragButton = MouseButtons.Left;
                 _state.DraggingMarker = null;
             }
