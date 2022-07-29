@@ -16,7 +16,7 @@ namespace Controllers.Services
         {
             _unitOfWork = new UnitOfWork();
         }
-        
+
         internal void UpdateCoordinate(Coordinate coordinate)
         {
             _unitOfWork.Coordinates.Update(coordinate);

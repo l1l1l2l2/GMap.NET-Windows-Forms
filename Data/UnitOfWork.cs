@@ -18,6 +18,5 @@ namespace Data
             //Coordinates = new SqlRepository<Coordinate>(_connectionString);
             Coordinates = new StoredProcedureRepository<Coordinate>(_connectionString);
         }
-        
     }
 }
