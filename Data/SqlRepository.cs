@@ -10,13 +10,13 @@ using Model;
 
 namespace Data
 {
-    public class Repository<T> where T : DomainObject
+    //Старая версия репозитория на SQL
+    public class SqlRepository<T> : RepositoryBase, IRepository<T> where T : DomainObject
     {
-        private readonly string _connectionString;
         private readonly string _tableName;
-        public Repository(string connectionString)
+
+        public SqlRepository(string connectionString) : base(connectionString)
         {
-            _connectionString = connectionString;
             _tableName = this.GetType().GenericTypeArguments[0].Name;
         }
         public IEnumerable<T> GetAll()
@@ -35,9 +35,11 @@ namespace Data
         }
         public bool Update(T item)
         {
+            string sql = $"SELECT * FROM {_tableName}";
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
+                var adapter = new SqlDataAdapter(sql, connection);
             }
             return false;
         }

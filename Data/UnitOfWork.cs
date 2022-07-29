@@ -10,11 +10,13 @@ namespace Data
 {
     public class UnitOfWork
     {
-        public Repository<Coordinate> Coordinates { get; private set; }
+        public IRepository<Coordinate> Coordinates { get; private set; }
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         public UnitOfWork()
         {
-            Coordinates = new Repository<Coordinate>(_connectionString);
+            //TODO : DI
+            Coordinates = new SqlRepository<Coordinate>(_connectionString);
+            //Coordinates = new StoredProcedureRepository<Coordinate>(_connectionString);
         }
         
     }
