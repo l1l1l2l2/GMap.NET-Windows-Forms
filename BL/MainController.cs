@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 
 namespace Controllers
 {
-    internal class MainController
+    public class MainController
     {
         private readonly OverlayService _service;
-        public GMapOverlay Overlay;
+        public GMapOverlay Overlay
+        {
+            get => _service.GetGMapOverlay();
+            set { }
+        }
         public MainController()
         {
             _service = new OverlayService();
         }
-        public MainController(OverlayService service)
-        {
-            _service = service;
-        }
-        public void GetOverlay()
-        {
-            Overlay = _service.GetGMapOverlay();
-        }
+        //Для будущего DI
+        //public MainController(OverlayService service)
+        //{
+        //    _service = service;
+        //}
     }
 }

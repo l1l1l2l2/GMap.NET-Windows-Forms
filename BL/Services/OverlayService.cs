@@ -17,7 +17,7 @@ namespace Controllers
             _markersSelector = new MarkersSelector();
             _unitOfWork = new UnitOfWork();
         }
-        // Заглушка для будущего DI
+        //Для будущего DI
         public OverlayService(MarkersSelector markersSelector, UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
