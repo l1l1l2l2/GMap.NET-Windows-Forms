@@ -79,7 +79,7 @@ namespace View
         private void gMapControl_MouseUp(object sender, MouseEventArgs e)
         {
             _state.IsMouseDown = false;
-            if (_state.HoverMarker != null)
+            if (_state.DraggingMarker != null)
             {
                 gMapControl.DragButton = MouseButtons.Left;
                 _state.DraggingMarker = null;
