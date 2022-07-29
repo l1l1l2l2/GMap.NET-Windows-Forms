@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Controllers;
+using GMap.NET;
+using GMap.NET.MapProviders;
 
 namespace View
 {
@@ -23,6 +25,7 @@ namespace View
         }
         internal MainController Controller;
         private MainFormState _state = new MainFormState();
+        const double MyFavoriteOfficeLat = 54.9741141, MyFavoriteOfficeLon = 82.9231203;
         public MainForm()
         {
             Controller = new MainController();
@@ -31,13 +34,13 @@ namespace View
 
         private void gMapControl_Load(object sender, EventArgs e)
         {
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache; //выбор подгрузки карты – онлайн или из ресурсов
-            gMapControl.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance; //провайдер карты
+            GMap.NET.GMaps.Instance.Mode = AccessMode.ServerAndCache; //выбор подгрузки карты – онлайн или из ресурсов
+            gMapControl.MapProvider = GoogleMapProvider.Instance; //провайдер карты
             gMapControl.MinZoom = 2; //минимальный зум
-            gMapControl.MaxZoom = 16; //максимальный зум
-            gMapControl.Zoom = 4; //зум при открытии
-            gMapControl.Position = new GMap.NET.PointLatLng(66.4169575018027, 94.25025752215694);// точка в центре карты при открытии
-            gMapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter; // как приближает (просто в центр карты или по положению мыши)
+            gMapControl.MaxZoom = 18; //максимальный зум
+            gMapControl.Zoom = 15; //зум при открытии
+            gMapControl.Position = new PointLatLng(MyFavoriteOfficeLat, MyFavoriteOfficeLon);// точка в центре карты при открытии
+            gMapControl.MouseWheelZoomType = MouseWheelZoomType.MousePositionAndCenter; // как приближает (просто в центр карты или по положению мыши)
             gMapControl.CanDragMap = true; // перетаскивание карты мышью
             gMapControl.DragButton = MouseButtons.Left; // какой кнопкой осуществляется перетаскивание
             gMapControl.ShowCenter = false; //показывать или скрывать красный крестик в центре
@@ -69,7 +72,7 @@ namespace View
 
         private void gMapControl_MouseMove(object sender, MouseEventArgs e)
         {
-            if(_state.IsMouseDown == true && _state.DraggingMarker != null)
+            if (_state.IsMouseDown == true && _state.DraggingMarker != null)
             {
                 var latLong = gMapControl.FromLocalToLatLng(e.Location.X, e.Location.Y);
                 _state.DraggingMarker.Position = latLong;
@@ -82,7 +85,7 @@ namespace View
             if (_state.DraggingMarker != null)
             {
                 Controller.OnUpdate(
-                    Convert.ToInt32(_state.DraggingMarker.Tag), 
+                    Convert.ToInt32(_state.DraggingMarker.Tag),
                     _state.DraggingMarker.Position.Lat,
                     _state.DraggingMarker.Position.Lng);
                 gMapControl.DragButton = MouseButtons.Left;
@@ -90,5 +93,5 @@ namespace View
             }
         }
     }
-    
+
 }
