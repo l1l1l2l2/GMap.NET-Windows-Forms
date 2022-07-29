@@ -15,8 +15,8 @@ namespace Data
         public UnitOfWork()
         {
             //TODO : DI
-            Coordinates = new SqlRepository<Coordinate>(_connectionString);
-            //Coordinates = new StoredProcedureRepository<Coordinate>(_connectionString);
+            //Coordinates = new SqlRepository<Coordinate>(_connectionString);
+            Coordinates = new StoredProcedureRepository<Coordinate>(_connectionString);
         }
         
     }
