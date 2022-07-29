@@ -10,10 +10,10 @@ using GMap.NET.WindowsForms;
 
 namespace Controllers
 {
-    //Получение оверлея из координат модели
+    //Возвращает оверлей из координат модели
     internal class OverlayMarkersSelector
     {
-        internal GMarkerGoogle GetMarker(Coordinate coordinate, GMarkerGoogleType gMarkerGoogleType = GMarkerGoogleType.red)
+        private GMarkerGoogle GetMarker(Coordinate coordinate, GMarkerGoogleType gMarkerGoogleType = GMarkerGoogleType.red)
         {
             GMarkerGoogle mapMarker = new GMarkerGoogle(new GMap.NET.PointLatLng(coordinate.Latitude, coordinate.Longitude), gMarkerGoogleType);
             mapMarker.ToolTip = new GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip(mapMarker);

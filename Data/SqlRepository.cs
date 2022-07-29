@@ -10,7 +10,10 @@ using Model;
 
 namespace Data
 {
-    //Старая версия репозитория на SQL
+    /// <summary>
+    /// Old version of repository in SQL. Update method is not implemented.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SqlRepository<T> : RepositoryBase, IRepository<T> where T : DomainObject
     {
         private readonly string _tableName;
@@ -33,7 +36,7 @@ namespace Data
             }
 
         }
-        //Не сделан т.к переключился на хранимые процедуры
+        //Не имплементирован т.к переключился на репозиторий с хранимыми процедурами
         public void Update(T item)
         {
             throw new NotImplementedException();

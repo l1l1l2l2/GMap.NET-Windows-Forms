@@ -8,6 +8,9 @@ using Model;
 
 namespace Data
 {
+    /// <summary>
+    /// Main class for working with DB
+    /// </summary>
     public class UnitOfWork
     {
         public IRepository<Coordinate> Coordinates { get; private set; }

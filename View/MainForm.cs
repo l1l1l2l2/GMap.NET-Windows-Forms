@@ -17,6 +17,7 @@ namespace View
 {
     public partial class MainForm : Form
     {
+        //Вспомогательный класс для работы с маркерами
         class MainFormState
         {
             internal bool IsMouseDown;
@@ -65,7 +66,6 @@ namespace View
             _state.IsMouseDown = true;
             if (_state.HoverMarker != null)
             {
-                gMapControl.DragButton = MouseButtons.None;
                 _state.DraggingMarker = _state.HoverMarker;
             }
         }
@@ -88,7 +88,6 @@ namespace View
                     Convert.ToInt32(_state.DraggingMarker.Tag),
                     _state.DraggingMarker.Position.Lat,
                     _state.DraggingMarker.Position.Lng);
-                gMapControl.DragButton = MouseButtons.Left;
                 _state.DraggingMarker = null;
             }
         }

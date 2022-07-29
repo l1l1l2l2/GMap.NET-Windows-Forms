@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Controllers.Services
 {
+    /// <summary>
+    /// Service for manipulating coordinates
+    /// </summary>
     internal class CoordinateService
     {
         private readonly UnitOfWork _unitOfWork;

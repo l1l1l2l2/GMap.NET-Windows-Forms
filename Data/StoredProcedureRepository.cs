@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    //Новая версия репозитория на хранимых процедурах
+    /// <summary>
+    /// Repository version on stored procedures
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class StoredProcedureRepository<T> : RepositoryBase, IRepository<T> where T : DomainObject
     {
         private readonly string _tableName;
@@ -56,7 +59,7 @@ namespace Data
                 command.ExecuteScalar();
             }
         }
-
+        
         private IEnumerable<T> MapDataTableToList(DataTable dt)
         {
             var columnNames = dt.Columns.Cast<DataColumn>()

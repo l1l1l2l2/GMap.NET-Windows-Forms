@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Controllers
 {
+    //Контроллер представления MainWindow
     public class MainController
     {
         private readonly OverlayService _overlayService;
@@ -24,9 +25,15 @@ namespace Controllers
             _overlayService = new OverlayService();
             _coordinateService = new CoordinateService();
         }
+        /// <summary>
+        /// Update Coordinate in DB
+        /// </summary>
+        /// <param name="idCoordinate"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        /// <param name="isDeleted"></param>
         public void OnUpdate(int idCoordinate, double latitude, double longitude, bool isDeleted = false)
         {
-
             _coordinateService.UpdateCoordinate(new Coordinate
             {
                 Id = idCoordinate,
@@ -35,11 +42,5 @@ namespace Controllers
                 IsDeleted = isDeleted
             });
         }
-
-        //TODO: DI
-        //public MainController(OverlayService service)
-        //{
-        //    _service = service;
-        //}
     }
 }
